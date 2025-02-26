@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .profile-page {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5vh 0;
+    overflow: hidden;
+  }
+  
+  .animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      45deg,
+      rgba(144, 238, 144, 0.3),
+      rgba(152, 251, 152, 0.3),
+      rgba(143, 188, 143, 0.3)
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    z-index: -2;
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .background-section {
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .background-trees {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 90%;
+  }
+  
+  .tree-image-left,
+  .tree-image-right {
+    max-height: 80vh;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.6;
+  }
+  
+  .page-header {
+    font-family:
+      "Integral CF",
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: clamp(2rem, 5vw, 5rem);
+    color: rgb(12, 65, 39);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .profile-section {
+    width: min(90%, 826px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .profile-card {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 16/9;
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
+  .profile-picture-container {
+    position: relative;
+    z-index: 1;
+    width: min(70%, 300px);
+    aspect-ratio: 1;
+  }
+  
+  .profile-picture-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+  }
+  
+  .profile-picture-wrapper:hover .profile-picture {
+    filter: brightness(0.7);
+  }
+  
+  .upload-button {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .profile-picture-wrapper:hover .upload-button {
+    opacity: 1;
+  }
+  
+  .upload-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .upload-text {
+    font-size: 1rem;
+    font-family: "Inter", sans-serif;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .user-form {
+    width: min(90%, 442px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-label {
+    color: rgb(12, 65, 39);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-family:
+      "Inter",
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-weight: 700;
+  }
+  
+  .form-input {
+    padding: 0.75rem 1rem;
+    border: 2px solid rgb(12, 65, 39);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family:
+      "Instrument Sans",
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: rgb(34, 139, 34);
+  }
+  
+  .submit-button {
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    background-color: rgb(12, 65, 39);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: rgb(34, 139, 34);
+  }
+  
+  @media (max-width: 991px) {
+    .background-trees {
+      display: none; /* Hide trees on mobile as per requirements */
+    }
+  
+    .profile-section {
+      gap: 1rem;
+    }
+  
+    .profile-card {
+      aspect-ratio: 1;
+    }
+  
+    .form-group {
+      gap: 0.25rem;
+    }
+  }
+  

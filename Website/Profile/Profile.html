@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scegli un Nome</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <main class="profile-page">
+        <div class="animated-background"></div>
+
+        <section class="background-section">
+            <div class="background-trees">
+                <img src="https://cdn.builder.io/api/v1/image/assets/aec65175c00543da9e7ba875bbd863d4/6dda1eb602f049c927a7df46ec336e0d587b1406699daa5b9b8b7291c62957d5?placeholderIfAbsent=true" alt="Background Tree Left" class="tree-image-left">
+                <img src="https://cdn.builder.io/api/v1/image/assets/aec65175c00543da9e7ba875bbd863d4/22432b2f31f94e6fe1f3d15c5c9fb59cccb5e0f9b335b299ad6d633b157e5ea9?placeholderIfAbsent=true" alt="Background Tree Right" class="tree-image-right">
+            </div>
+        </section>
+
+        <h1 class="page-header">SCEGLI UN NOME!</h1>
+
+        <section class="profile-section">
+            <article class="profile-card">
+                <img src="https://cdn.builder.io/api/v1/image/assets/aec65175c00543da9e7ba875bbd863d4/f08bdb4680063e935a58756cc2d4d2142950c8d4f08f4133760895945c37e683?placeholderIfAbsent=true" alt="Profile Card Background" class="card-background">
+                <div class="profile-picture-container">
+                    <div class="profile-picture-wrapper">
+                        <img id="profile-preview" src="https://cdn.builder.io/api/v1/image/assets/aec65175c00543da9e7ba875bbd863d4/b41314df49d8eb373fe5234bd5e911dbe6e78f80c9cdc9829dddc48ce0805bc4?placeholderIfAbsent=true" alt="Profile Picture" class="profile-picture">
+                        <label for="profile-upload" class="upload-button">
+                            <span class="upload-icon">📷</span>
+                            <span class="upload-text">Cambia foto</span>
+                        </label>
+                        <input type="file" id="profile-upload" accept="image/*" class="hidden">
+                    </div>
+                </div>
+            </article>
+
+            <form class="user-form" id="userDetailsForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">Nome Utente</label>
+                    <input type="text" id="username" name="username" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="country" class="form-label">Paese di provenienza</label>
+                    <input type="text" id="country" name="country" class="form-input" required>
+                </div>
+
+                <button type="submit" class="submit-button">Salva</button>
+            </form>
+        </section>
+    </main>
+    <script>
+        // Profile picture upload handling
+        const profileUpload = document.getElementById('profile-upload');
+        const profilePreview = document.getElementById('profile-preview');
+
+        profileUpload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePreview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission handling
+        const userForm = document.getElementById('userDetailsForm');
+        userForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(userForm);
+            const userData = {
+                username: formData.get('username'),
+                country: formData.get('country')
+            };
+            console.log('Form submitted:', userData);
+            // Here you would typically send the data to your backend
+        });
+    </script>
+</body>
+</html>

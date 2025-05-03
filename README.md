@@ -1,26 +1,44 @@
 # Active Sprout
 
-Active Sprout è un percorso fitness a tappe con mappa interattiva per monitorare i progressi e mantenere la motivazione. Il sistema registra distanza, tempo e calorie bruciate, offrendo notifiche personalizzate per incentivare l'attività fisica. L'applicazione è accessibile sia da desktop che da dispositivi mobili e include funzioni social per condividere i progressi con amici e partecipare a sfide.
+**Raggiungi i tuoi obiettivi.**
 
-## Caratteristiche Principali
-- **Mappa Interattiva**: Visualizza il percorso, le tappe completate e i prossimi obiettivi.
-- **Monitoraggio Attività**: Registra distanza, tempo, velocità media e calorie bruciate.
-- **Obiettivi a Tappe**: Suddividi il tuo percorso in sfide progressive per mantenere la motivazione.
-- **Notifiche e Promemoria**: Ricevi avvisi e suggerimenti per migliorare il tuo allenamento.
-- **Integrazione con Wearable**: Compatibile con dispositivi smart per il rilevamento automatico delle attività.
-- **Funzionalità Social**: Condividi i tuoi progressi, partecipa a sfide e confrontati con amici.
-- **Statistiche Dettagliate**: Analizza i tuoi miglioramenti con grafici e report dettagliati.
-
-## Mockup e Design
-Per una panoramica dell'interfaccia, ecco i mock up:
-[Mockup Active Sprout](https://github.com/username/active-sprout/mockups)
-
-## Contributi
-Se vuoi contribuire, apri una issue o invia una pull request nel repository ufficiale. Sono benvenuti suggerimenti su nuove funzionalità e miglioramenti all'interfaccia.
-
-## Licenza
-Questo progetto è distribuito sotto licenza GNU 3.0.
+Active Sprout è un'app pensata per aiutarti a progettare, simulare e monitorare percorsi fitness personalizzati, costruiti su misura per le tue caratteristiche fisiche e i tuoi obiettivi.
 
 ---
-*Active Sprout - Raggiungi i tuoi obiettivi, un passo alla volta!*
 
+## Inizia il tuo percorso
+
+**Pronto a trasformare il tuo fitness?**  
+Inizia oggi il tuo percorso personalizzato verso uno stile di vita più sano e attivo con Active Sprout.
+
+---
+
+## Manuale d'Uso
+
+1. **Registrazione**  
+   Crea il tuo account inserendo peso, età e altezza.
+
+2. **Creazione del percorso**  
+   Costruisci un percorso fitness su misura per te, impostando le tappe in base ai tuoi obiettivi.
+
+3. **Simulazione del percorso**  
+   Visualizza in anteprima il tuo percorso e verifica come si adatta alle tue esigenze.
+
+---
+
+## Le nostre funzionalità
+
+- **Calcolo delle Calorie**  
+  Calcolo approssimativo del consumo calorico basato su età, altezza e peso.
+
+- **Percorsi Personalizzati**  
+  Genera percorsi unici in base alle tue caratteristiche fisiche.
+
+- **Monitoraggio dei Passi**  
+  Stima del numero ideale di passi giornalieri calcolata su misura per te.
+
+- **Validazione delle Tappe**  
+  Convalida del percorso tramite le tappe inserite e completate.
+
+
+---

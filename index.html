@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Sprout - Il tuo percorso fitness personalizzato</title>
+    <style>
+        @font-face {
+            font-family: 'Integral CF';
+            src: url('/Font/Integral-CF/Demo_Fonts/Fontspring-DEMO-integralcf-regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Instrumens Sans';
+            src: url('Assets/fonts/InstrumensSans-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Instrumens Sans', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #8a56e8, #ff69b4);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #9f7fff, #ff85c1);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            background: linear-gradient(135deg, #c9ffe5 0%, #e0e5ff 50%, #ffe0f5 100%);
+            min-height: 100vh;
+            color: #4a5568;
+            line-height: 1.6;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .nav-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8a56e8;
+            font-family: 'Integral CF', sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: #8a56e8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #ff69b4;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, #9f7fff, #7f7fff);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 0;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8a56e8, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Integral CF', sans-serif;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #6a7280;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8a56e8, #ff69b4);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Integral CF', sans-serif;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #8a56e8;
+            border: 2px solid #8a56e8;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Integral CF', sans-serif;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(138, 86, 232, 0.1);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image .logo-placeholder {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .features {
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #8a56e8;
+            font-family: 'Integral CF', sans-serif;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #8a56e8;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #8a56e8;
+            font-family: 'Integral CF', sans-serif;
+        }
+
+        .how-it-works {
+            padding: 60px 0;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -10%;
+            width: 20%;
+            height: 2px;
+            background: #8a56e8;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8a56e8, #ff69b4);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Integral CF', sans-serif;
+        }
+
+        .step-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #8a56e8;
+            font-family: 'Integral CF', sans-serif;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #8a56e8;
+            font-family: 'Integral CF', sans-serif;
+        }
+
+        .cta-subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            color: #8a56e8;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #6a7280;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+
+            .step:not(:last-child):after {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="nav-logo">Active Sprout</div>
+                <div class="nav-links">
+                    <a href="#features" class="nav-link">Funzionalità</a>
+                    <a href="#how-it-works" class="nav-link">Come Funziona</a>
+                    <a href="#manual" class="nav-link">Manuale d'Uso</a>
+                </div>
+                <button class="nav-button" onclick="window.location.href='Login/login.html'" style="font-family: 'Integral CF';">Registrati</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">Raggiungi i tuoi obiettivi</h1>
+                    <p class="hero-subtitle">Active Sprout ti aiuta a creare, simulare e progettare percorsi personalizzati.</p>
+                    <div class="hero-buttons">
+                        <a href="Login/login.html" class="btn-primary">Inizia il tuo percorso</a>
+                        <a href="manuale/manuale.html" class="btn-secondary">Manuale d'uso</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="logo-placeholder">
+                        <img src="Assets/logo3.png" alt="Logo Active Sprout" style="width: 450px; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Le nostre funzionalita'</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">Calcolo delle calorie in base all'eta', all'altezza e al peso</h3>
+                    <p>Crea percorsi fitness su misura in base allr tue caratteristiche.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Monitoraggio dei passi</h3>
+                    <p>In base a un calcolo approssimativo, Active Sprout calcola il numero di passi che dovresti fare in base all'età, all'altezza e al peso.</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Validazione delle tappe</h3>
+                    <p>Permette di validare le tappe in base alle tappe inserite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Come funziona</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Registrazione</h3>
+                    <p>Crea un account e definisci il tuo peso, eta' e altezza.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Creazione del percorso</h3>
+                    <p>Crea il tuo percorso in base ai tuoi obiettivi.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Simulazione del percorso</h3>
+                    <p>Simula il tuo percorso in base alle tappe inserite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="manual" class="cta">
+        <div class="container">
+            <h2 class="cta-title">Pronto a trasformare il tuo fitness?</h2>
+            <p class="cta-subtitle">Inizia oggi il tuo percorso personalizzato verso uno stile di vita più sano e attivo con Active Sprout.</p>
+            <a href="Login/login.html" class="btn-primary">Registrati ora</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="manuale/manuale.html" class="footer-link">Manuale d'uso</a>
+            </div>
+            <p class="copyright">© 2025 Active Sprout. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+</body>
+</html>

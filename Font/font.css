@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'Integral CF';
+    src: url('../Font/Integral-CF/Demo_Fonts/Fontspring-DEMO-integralcf-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Integral CF';
+    src: url('../Font/Integral-CF/Demo_Fonts/Fontspring-DEMO-integralcf-bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Instrument Sans';
+    src: url('../Font/Instrument Sans Font Family/fonts/otf/InstrumentSans-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Instrument Sans';
+    src: url('../Font/Instrument Sans Font Family/fonts/otf/InstrumentSans-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Inria Sans';
+    src: url('../Font/Inria_Sans/InriaSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }

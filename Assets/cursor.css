@@ -1,0 +1,27 @@
+/* Custom cursor for normal mode */
+body {
+    cursor: url('Cursor.png'), auto;
+}
+
+/* Custom cursor for hover mode */
+a:hover, button:hover {
+    cursor: url('CursorHover.png'), pointer;
+}
+
+/* Custom cursor for text mode */
+textarea, input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="url"] {
+    cursor: url('Textmodi.png'), text;
+}
+
+* {
+    cursor: url('../Assets/Cursor.png'), auto;
+}
+
+button, a, input, textarea, select {
+    cursor: url('../Assets/Cursor.png'), pointer;
+}
+
+/* Disable custom cursor for loading overlay */
+.loading-overlay * {
+    cursor: default;
+}

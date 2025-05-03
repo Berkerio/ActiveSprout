@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Sprout Login</title>
+    <link rel="stylesheet" href="login-styles.css">
+    <link rel="stylesheet" href="../Font/font.css">
+    <link rel="stylesheet" href="../Assets/loading.css" />
+    <link rel="stylesheet" href="../Assets/cursor.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div id="lottie-loading" class="loading-logo"></div>
+        <div class="loading-text">Caricamento in corso...</div>
+    </div>
+
+    <div class="login-container">
+        <div class="header">
+            <div class="welcome-text">PRIMA DI INIZIARE IL VIAGGIO REGISTRATI!</div>
+            <div class="logo">
+                <img src="../Assets/logo3.png" alt="Active Sprout Logo" id="logo">
+            </div>
+        </div>
+
+        <h1 class="login-title">LOGIN</h1>
+        
+        <form id="loginForm">
+            <label for="username" class="form-label">Inserisci il tuo nome</label>
+            <input type="text" id="username" class="form-control" placeholder="Username" required>
+            
+            <label for="password" class="form-label">Inserisci password</label>
+            <input type="password" id="password" class="form-control" placeholder="Password" required>
+            
+            <div id="errorMessage" class="alert-message"></div>
+            
+            <button type="submit" class="login-button">INIZIA</button>
+        </form>
+        
+        <div class="register-prompt">
+            se non hai un'account <br> <a href="#" class="register-link">registrati</a>
+        </div>
+    </div>
+    <script src="login-validation.js" defer></script>
+    <script src="../Assets/loading.js"></script>
+</body>
+</html>

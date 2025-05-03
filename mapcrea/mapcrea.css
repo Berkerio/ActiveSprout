@@ -1,0 +1,646 @@
+@import url('https://fonts.googleapis.com/css2?family=Integral+CF:wght@400;700&family=Instrument+Sans:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    cursor: url("/Assets/Cursor.png"), auto;
+}
+button:hover{
+  cursor: url("../Assets/CursorHover.png"), auto;
+}
+body {
+    margin: 0;
+    font-family: 'Instrument Sans', sans-serif;
+    background: linear-gradient(to right, #9aa7fc65, #ffa1fc80);
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    overflow: hidden; /* Previene l'overflow */
+}
+.leaflet-routing-container {
+    display: none !important;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding: 15px;
+    gap: 15px;
+}
+
+.card {
+    background: linear-gradient(to right, #C3E4FF, #F9C5FF);
+    border: 7px solid #79BEDB;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 380px;
+    padding: 20px;
+    z-index: 10;
+    margin-bottom: 15px;
+    align-self: flex-start;
+}
+
+.title {
+    font-family: 'Integral CF', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    text-align: left;
+    padding-left: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #02004a9a, #00b090b1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 15px;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(to right, #02004a9a, #00b090b1);
+    border-radius: 2px;
+}
+
+.route-name {
+    font-family: 'Integral CF', sans-serif;
+    font-size: 24px;
+    text-align: left;
+    padding-left: 20px;
+    color: #004867;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.details {
+    font-family: 'Instrument Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 15px;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 30px;
+    font-size: 14px;
+    color: #004867da;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.info p {
+    font-family: 'Instrument Sans', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.Dec {
+    font-size: 15px;
+    font-weight: bold;
+    color: #004867;
+    margin: 20px 0 12px 15px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.steps {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.step-bar {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    position: relative;
+    padding: 5px;
+    justify-content: flex-start;
+}
+
+.step {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: linear-gradient(to left, #008df224, #7792ff96);
+    border: none;
+    border-radius: 10px;
+    color: #00000063;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    min-width: 110px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.step.active, .step:hover {
+    background: linear-gradient(to right, #cab2705f, #ffa040a0);
+    padding: 12px 30px;
+    color: #0000008e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.description {
+    margin: 12px 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.description textarea {
+    width: 100%;
+    height: 90px;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    resize: none;
+    font-size: 15px;
+    font-family: 'Instrument Sans', sans-serif;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #70a4ca5f, #4066ff59);
+    transition: background 0.3s ease;
+    text-align: left;
+}
+
+.description textarea.active {
+    background: linear-gradient(to right, #cab2705f, #ffa040a0) !important;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 20px;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#map {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    border: none;
+    pointer-events: auto;
+    filter: saturate(150%) contrast(110%) brightness(105%);
+    transition: all 0.3s ease;
+}
+
+#map:hover {
+    filter: saturate(170%) contrast(115%) brightness(110%);
+}
+
+/* Classe Highlight */
+.highlight {
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(to right, #008770bb, #237379);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+/* Classe Calories */
+.calories {
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(to right, #237379, #ff0509db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+/* Classe Length */
+.length {
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(to right, #00500372, #8bc34a91);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+/* Classe Time */
+.time {
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(to right, #00233fbe, #00519476);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+/* STILE AGGIORNATO PER LA VALIDAZIONE DELLE TAPPE */
+
+/* Box per la tappa raggiunta */
+#tappa-raggiunta {
+    position: fixed;
+    top: 250px;
+    right: 20px;
+    width: 280px;
+    height: 120px;
+    background-color: #9ce29c;
+    border: 5px solid #7cb77c;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+}
+
+#tappa-raggiunta.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#tappa-raggiunta .popup-header {
+    font-family: 'Integral CF', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #5a7650;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+#tappa-raggiunta .popup-content {
+    font-family: 'Integral CF', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #685f2a;
+}
+
+/* Box per la prossima tappa */
+#prossima-tappa {
+    position: fixed;
+    top: 380px;
+    right: 20px;
+    width: 280px;
+    height: 120px;
+    background-color: #ffb6c1;
+    border: 5px solid #ff8da1;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+}
+
+#prossima-tappa.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#prossima-tappa .popup-header {
+    font-family: 'Integral CF', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #a85160;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+#prossima-tappa .popup-content {
+    font-family: 'Integral CF', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #685f2a;
+}
+
+/* Animazione dei puntini */
+.loading-dots {
+    display: inline-block;
+    animation: loadingDots 1.5s infinite;
+}
+
+@keyframes loadingDots {
+    0% { content: "."; }
+    33% { content: ".."; }
+    66% { content: "..."; }
+}
+
+/* Popup finale */
+#popup-finale {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    background: linear-gradient(to right, #C3E4FF, #F9C5FF);
+    border: 7px solid #79BEDB;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    padding: 30px;
+    text-align: center;
+}
+
+#popup-finale.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -55%);
+}
+
+#popup-finale .popup-header {
+    font-family: 'Integral CF', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #483D8B;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #02004a9a, #00b090b1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#popup-finale .popup-content {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    color: #004867da;
+}
+
+#popup-finale .btn {
+    margin: 10px auto;
+    display: block;
+}
+
+/* Overlay per popup */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .highlight, .calories, .length, .time {
+        font-size: 18px;
+    }
+    .container {
+        padding: 10px;
+    }
+    .card {
+        width: 100%;
+        padding: 15px;
+    }
+    .title {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    .info {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 12px;
+    }
+    .steps {
+        padding: 10px;
+    }
+    .step {
+        padding: 8px 15px;
+        font-size: 14px;
+        min-width: 90px;
+    }
+    .description {
+        margin: 10px;
+        padding: 10px;
+    }
+    .description textarea {
+        height: 70px;
+        padding: 10px;
+        font-size: 14px;
+    }
+    .btn {
+        font-size: 18px; /* Regola la dimensione del font per schermi più piccoli */
+        padding: 10px 15px; /* Regola il padding per schermi più piccoli */
+    }
+    .actions {
+        flex-direction: column; /* Allinea i bottoni verticalmente */
+        align-items: center; /* Allinea i bottoni al centro */
+        gap: 10px; /* Aggiunge spazio tra i bottoni */
+        position: static; /* Rimuove il posizionamento assoluto */
+        width: 100%; /* Larghezza completa per il contenitore */
+    }
+    #tappa-raggiunta, #prossima-tappa {
+        width: 90%;
+        right: 5%;
+        top: 250px;
+    }
+    #prossima-tappa {
+        top: 380px;
+    }
+}
+
+/* Stile per il percorso sulla mappa */
+.leaflet-routing-line {
+    stroke: #ffd700;
+    stroke-width: 6;
+    stroke-opacity: 0.8;
+    stroke-dasharray: 10, 10;
+    animation: dash 30s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -1000;
+    }
+}
+
+/* Stile per i marker */
+.leaflet-marker-icon {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease;
+}
+
+.leaflet-marker-icon:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+}
+
+.btn {
+    border: none;
+    border-radius: 20px;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 23px;
+    text-align: center;
+    transition: all 0.5s ease;
+    font-family: 'Integral CF', sans-serif;
+    width: 100%;
+    max-width: 200px;
+}
+
+.btn.modify {
+    background: linear-gradient(to right, #E1C1FF, #C0ABFF);
+    color: #4a4a4a;
+}
+
+.btn.modify:hover {
+    background: #f480ff;
+    font-size: 30px;
+}
+
+.btn.save {
+    background: linear-gradient(to right, #ff82a5, #FFA4C5);
+    color: #da0000;
+}
+
+.btn.save:hover {
+    background: #ffaa90;
+    font-size: 30px;
+}
+
+/* Loading Screen */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #C3E4FF, #F9C5FF);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading-text {
+    font-family: 'Integral CF', sans-serif;
+    font-size: 24px;
+    color: #004867da;
+    margin-top: 20px;
+    background: linear-gradient(to right, #02004a9a, #00b090b1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Box informazioni in tempo reale */
+#info-tempo-reale {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 250px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    border: 5px solid #79BEDB;
+    background: linear-gradient(to right, #C3E4FF, #F9C5FF);
+}
+
+#info-tempo-reale.active {
+    transform: translateX(0);
+}
+
+#info-tempo-reale .popup-header {
+    font-family: 'Integral CF', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: #483D8B;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #02004a9a, #00b090b1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#info-tempo-reale .popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#info-tempo-reale .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#info-tempo-reale .info-item:last-child {
+    border-bottom: none;
+}
+
+#info-tempo-reale .label {
+    color: #004867da;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#info-tempo-reale .value {
+    color: #2ecc71;
+    font-weight: bold;
+    font-size: 16px;
+    background: linear-gradient(to right, #008770bb, #237379);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

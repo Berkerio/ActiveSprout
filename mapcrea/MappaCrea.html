@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MapCrea - Anteprima</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <!-- Lottie Player -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- CSS personalizzato -->
+    <link rel="stylesheet" href="mapcrea.css">
+    <link rel="stylesheet" href="../Assets/loading.css" />
+    <link rel="stylesheet" href="../Assets/cursor.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div id="lottie-loading" class="loading-logo"></div>
+        <div class="loading-text">Caricamento in corso...</div>
+    </div>
+
+    <div class="container">
+        <!-- Card con informazioni -->
+        <div class="card">
+            <div class="title" id="route-name"></div>
+            <div class="details">
+                <div class="info">
+                    <p>Modalità<br><span class="highlight" id="modalita">Corsa</span></p>
+                    <p>Calorie presupposte<br><span class="calories" id="calorie">500 cal</span></p>
+                </div>
+                <div class="info">
+                    <p>Lunghezza<br><span class="length" id="lunghezza">3 km</span></p>
+                    <p>Durata<br><span class="time" id="durata">0h 45m 0s</span></p>
+                </div>
+            </div>
+            <div class="Dec">Informazioni sulle tappe</div>
+            <div class="steps">
+                <div class="step-bar" id="step-bar">
+                    <!-- Gli step verranno generati dinamicamente -->
+                </div>
+            </div>
+            <div class="description">
+                <textarea id="tappa-desc" readonly>Prima pausa, nota: bevi l'acqua</textarea>
+            </div>
+        </div>
+        
+        <!-- Mappa -->
+        <div id="map"></div>
+        
+        <!-- Pulsanti di controllo -->
+        <div class="actions">
+            <button class="btn modify" id="esci-btn">ESCI</button>
+            <button class="btn save" id="avvia-btn">AVVIA</button>
+        </div>
+    </div>
+
+    <!-- Box notifica tappa raggiunta -->
+    <div id="tappa-raggiunta">
+        <div class="popup-header">TAPPA RAGGIUNTA!</div>
+        <div class="popup-content">PAUSA ✓</div>
+    </div>
+
+    <!-- Box prossima tappa -->
+    <div id="prossima-tappa">
+        <div class="popup-header">PROSSIMA TAPPA</div>
+        <div class="popup-content">TAPPA 2 <span class="loading-dots"></span></div>
+    </div>
+
+    <!-- Box informazioni in tempo reale -->
+    <div id="info-tempo-reale">
+        <div class="popup-header">INFORMAZIONI</div>
+        <div class="popup-content">
+            <div class="info-item">
+                <span class="label">Distanza percorsa:</span>
+                <span class="value" id="distanza-percorsa">0.0 km</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Tempo trascorso:</span>
+                <span class="value" id="tempo-trasorso">0h 0m 0s</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Passi:</span>
+                <span class="value" id="passi">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup finale -->
+    <div id="popup-finale">
+        <div class="popup-header">Percorso Completato!</div>
+        <div class="popup-content">
+            Hai completato con successo il percorso! Cosa vorresti fare adesso?
+        </div>
+        <button class="btn modify" id="ripeti-btn">RIPETI</button>
+        <button class="btn save" id="fine-btn">ESCI</button>
+    </div>
+
+    <!-- Overlay per popup -->
+    <div class="popup-overlay" id="popup-overlay"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet Routing Machine JS -->
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <!-- JavaScript personalizzato -->
+    <script src="mapcrea.js"></script>
+    <script src="../Assets/loading.js"></script>
+</body>
+</html>

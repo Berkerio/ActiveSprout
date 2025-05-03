@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Dashboard Fitness</title>
+    <link rel="stylesheet" href="homepage.css" />
+    <link rel="stylesheet" href="../Font/font.css">
+    <link rel="stylesheet" href="../Assets/loading.css" />
+    <link rel="stylesheet" href="../Assets/cursor.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+  </head>
+  <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+      <div id="lottie-loading" class="loading-logo"></div>
+      <div class="loading-text">Caricamento in corso...</div>
+    </div>
+    
+    <div class="main-version">
+      <!-- Background Elements -->
+      <div class="background" aria-hidden="true">
+        <img
+          loading="lazy"
+          src="../Assets/CloudsBackground.png"
+          class="background-image"
+          alt=""
+        />
+        <img
+          loading="lazy"
+          src="../Assets/logo3.png"
+          class="background-image-2"
+        />
+      </div>
+
+      <!-- Header Section -->
+      <header class="header">
+        <div class="profile-section">
+          <img
+            loading="lazy"
+            id="profile-image"
+            class="profile-image"
+            alt="Profile picture"
+          />
+          <div class="user-info">
+            <p class="username-text" id="username">Nome Utente</p>
+          </div>
+        </div>
+
+        <div class="welcome-section">
+          <h1 class="welcome-title">BENVENUTO/A</h1>
+          <p class="welcome-description">
+            Benvenuto! Esplora il tuo percorso verso il fitness. Passa sopra i
+            bottoni per scoprire ulteriori dettagli e inizia subito!
+          </p>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="create-path-section">
+          <a href="../creailtuopercorso/crea.html">
+            <button
+              class="create-path-btn"
+              aria-label="Crea il tuo percorso"
+            >
+              CREA IL TUO PERCORSO!
+            </button>
+          </a>
+        </div>
+      </main>
+      
+      <!-- Utility Buttons - Back and Help -->
+      <div class="utility-buttons">
+        <button id="back-button" class="back-button" aria-label="Torna indietro">
+          ←
+        </button>
+        <a href="../manuale/manuale.html">
+          <button id="help-button" class="help-button" aria-label="Aiuto">
+            ?
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../Assets/loading.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // User profile data
+        const username = localStorage.getItem('currentUser') || 'Nome Utente';
+        const profileImage = localStorage.getItem('profileImage') || '../Assets/default-profile.png';
+
+        // Set user data
+        document.getElementById('username').textContent = username;
+        document.getElementById('profile-image').src = profileImage;
+        // Back button functionality
+        const backButton = document.getElementById('back-button');
+        backButton.addEventListener('click', function() {
+          window.location.href = '../Profile/Profile.html';
+        });
+      });
+    </script>
+  </body>
+</html>

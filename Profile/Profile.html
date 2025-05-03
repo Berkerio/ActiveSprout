@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="profile-styles.css">
+    <link rel="stylesheet" href="../Assets/loading.css" />
+    <link rel="stylesheet" href="../Assets/cursor.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+    <script src="profile-validation.js" defer></script>
+    <style>
+        .loading-overlay {
+            position: fixed !important;
+            z-index: 9999 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div id="lottie-loading" class="loading-logo"></div>
+        <div class="loading-text">Caricamento in corso...</div>
+    </div>
+    <a href="../manuale/manuale.html" class="help-manual-btn" title="Manuale d'Uso">?</a>
+    <main class="profile-page">
+        <div class="animated-background"></div>
+        <header class="page-header">
+            <h1 class="page-title">SCEGLI UN IMMAGINE PROFILO</h1>
+        </header>
+
+        <section class="profile-card">
+            <div class="profile-image-section">
+                <div class="cloud-container">
+                    <img src="../Assets/CloudsBackground2.png"
+                         alt="Cloud background"
+                         class="cloud-background">
+                    <div class="profile-upload-container">
+                        <img src="../Assets/Imagepic.png"
+                             alt="Profile picture"
+                             class="profile-picture"
+                             id="profile-preview">
+                        <input type="file"
+                               id="profile-upload"
+                               accept="image/*"
+                               class="profile-input"
+                               aria-label="Choose profile picture">
+                        <label for="profile-upload" class="profile-upload-label" style="display:block; cursor:pointer; position:absolute; top:0; left:0; width:100%; height:100%; z-index:3;">
+                            <span class="upload-text" style="position:absolute; bottom:-2.2rem; left:50%; transform:translateX(-50%); background:rgba(255,255,255,0.8); color:#153c2b; font-weight:700; border-radius:8px; padding:0.2rem 0.7rem; font-size:1rem;">Scegli immagine</span>
+                        </label>
+                    </div>
+                </div>
+                <p class="profile-validation-message" aria-live="polite"></p>
+            </div>
+
+            <div class="user-info">
+                <p class="user-country">Nome Utente</p>
+                <h2 class="user-name" id="nome-utente">Nome Utente</h2>
+            </div>
+        </section>
+
+        <section class="physical-data">
+            <h3 class="physical-data-title">DATI FISICI DELL'UTENTE</h3>
+            <div class="data-grid">
+                <div class="data-item">
+                    <p class="data-label">Altezza</p>
+                    <p class="data-value" id="altezza">Dati non disponibili</p>
+                </div>
+                <div class="data-item">
+                    <p class="data-label">Peso</p>
+                    <p class="data-value" id="peso">Dati non disponibili</p>
+                </div>
+                <div class="data-item">
+                    <p class="data-label">Età</p>
+                    <p class="data-value" id="eta">Dati non disponibili</p>
+                </div>
+            </div>
+        </section>
+
+        <p class="error-message" id="error-message" style="display: none;">Nessun dato disponibile.</p>
+        <div class="button-container">
+            <button class="submit-button" type="button" onclick="window.location.href='../HOME/homepage.html'">INVIA</button>
+            <button class="back-button" type="button" onclick="window.history.back()">INDIETRO</button>
+        </div>
+    </main>
+    <!-- Loading Spinner -->
+    <div id="simple-loading" class="simple-loading-overlay">
+      <div class="simple-spinner"></div>
+    </div>
+    <div class="trees-background"></div>
+    <div class="trees-left"></div>
+    <div class="trees-right"></div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let al = localStorage.getItem('height') || "Dati non disponibili";
+        let pe = localStorage.getItem('weight') || "Dati non disponibili";
+        let e = localStorage.getItem('age') || "Dati non disponibili";
+        let nomeUtente = localStorage.getItem('currentUser') || "Nome Utente";
+
+        document.getElementById('altezza').textContent = al;
+        document.getElementById('peso').textContent = pe;
+        document.getElementById('eta').textContent = e;
+        document.getElementById('nome-utente').textContent = nomeUtente;
+
+        // Nascondi loading dopo caricamento
+        document.getElementById('simple-loading').style.display = 'none';
+    });
+    </script>
+    <script src="../Assets/loading.js"></script>
+</body>
+</html>

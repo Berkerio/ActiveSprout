@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "servor --reload"
+  },
+  "dependencies": {
+    "servor": "^4.0.2",
+    "@lottiefiles/lottie-player": "^2.0.2"
+  }
+}

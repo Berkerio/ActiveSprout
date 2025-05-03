@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea Il Tuo Percorso</title>
+    <link rel="stylesheet" href="crea.css">
+    <link rel="stylesheet" href="/Font/font.css">
+    <link rel="stylesheet" href="../Assets/loading.css" />
+    <link rel="stylesheet" href="../Assets/cursor.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div id="lottie-loading" class="loading-logo"></div>
+        <div class="loading-text">Caricamento in corso...</div>
+    </div>
+
+    <div class="container">
+        <button id="back-btn" class="back-btn" aria-label="Torna indietro">←</button>
+        <button id="help-btn" class="help-btn" aria-label="Manuale d'uso">?</button>
+        <div class="header">
+            <h1>CREA IL TUO PERCORSO</h1>
+        </div>
+        <div class="form-row">
+            <div class="nome-percorso">
+                <label for="route-name">NOME DEL PERCORSO</label>
+                <input type="text" id="route-name" placeholder="Inserisci il nome del percorso" required>
+                <span class="error-message">Il nome del percorso è obbligatorio</span>
+            </div>
+            <div class="modalita">
+                <label for="transport-mode">SELEZIONA MODALITÀ</label>
+                <div class="custom-select">
+                    <select id="transport-mode" required>
+                        <option value="" disabled selected>Seleziona modalità</option>
+                        <option value="Corsa">CORSA</option>
+                        <option value="Camminata">CAMMINATA</option>
+                        <option value="Bicicletta">BICICLETTA</option>
+                    </select>
+                    <span class="select-arrow">▼</span>
+                </div>
+            </div>
+        </div>
+        <div class="sections-container">
+            <div class="section-card" id="partenza-card" data-section="partenza">
+                <h2>PARTENZA</h2>
+                <div class="search-container">
+                    <label for="partenza-search">CERCA ZONA</label>
+                    <input type="text" id="partenza-search" placeholder="Cerca la tua partenza" required>
+                    <div class="search-icon">🔍</div>
+                    <div class="search-results" id="partenza-results"></div>
+                </div>
+                <label for="partenza-desc">DESCRIZIONE</label>
+                <textarea id="partenza-desc" placeholder="(Opzionale) Inserisci una descrizione per l'azione da svolgere."></textarea>
+            </div>
+            <div class="section-card" id="tappe-card" data-section="tappe">
+                <h2>TAPPE</h2>
+                <div class="stops-container" id="stops-container">
+                    <!-- Le tappe verranno aggiunte dinamicamente qui -->
+                </div>
+                <button class="add-stop" id="add-stop" aria-label="Aggiungi tappa">+</button>
+            </div>
+            <div class="section-card" id="arrivo-card" data-section="arrivo">
+                <h2>ARRIVO</h2>
+                <div class="search-container">
+                    <label for="arrivo-search">CERCA ZONA</label>
+                    <input type="text" id="arrivo-search" placeholder="Cerca il tuo arrivo" required>
+                    <div class="search-icon">🔍</div>
+                    <div class="search-results" id="arrivo-results"></div>
+                </div>
+                <label for="arrivo-desc">DESCRIZIONE</label>
+                <textarea id="arrivo-desc" placeholder="(Opzionale) Inserisci una descrizione per l'azione da svolgere."></textarea>
+            </div>
+        </div>
+        <div class="submit-btn">
+            <button id="invio-btn">INVIO</button>
+        </div>
+    </div>
+    <!-- Overlay popup fullscreen -->
+    <div id="fullscreen-overlay" style="display:none;">
+        <div class="fullscreen-card-wrapper">
+            <button class="close-fullscreen" aria-label="Chiudi">×</button>
+            <div id="fullscreen-card-content"></div>
+        </div>
+    </div>
+    <!-- Template for stop card -->
+    <template id="stop-template">
+        <div class="stop-card">
+            <button class="remove-stop" aria-label="Rimuovi tappa" title="Rimuovi tappa">×</button>
+            <label for="stop-name">NOME TAPPA</label>
+            <input type="text" class="stop-name" id="stop-name" placeholder="Nome tappa">
+            <div class="search-container">
+                <label for="tappa-search">CERCA ZONA</label>
+                <input type="text" class="tappa-search" id="tappa-search" placeholder="Cerca la tua tappa" required>
+                <div class="search-icon">🔍</div>
+                <div class="search-results"></div>
+            </div>
+            <label for="tappa-desc">DESCRIZIONE</label>
+            <textarea class="tappa-desc" id="tappa-desc" placeholder="(Opzionale) Inserisci una descrizione per l'azione da svolgere."></textarea>
+        </div>
+    </template>
+    <!-- Manuale d'uso popup -->
+    <div id="help-overlay" class="help-overlay" style="display:none;">
+        <div class="help-content">
+            <button class="close-help" aria-label="Chiudi manuale">×</button>
+            <h2>Manuale d'uso</h2>
+            <div class="help-sections">
+                <div class="help-section">
+                    <h3>Nome del percorso</h3>
+                    <p>Inserisci un nome descrittivo per il tuo percorso. Questo campo è obbligatorio.</p>
+                </div>
+                <div class="help-section">
+                    <h3>Modalità di trasporto</h3>
+                    <p>Scegli tra CORSA, CAMMINATA o BICICLETTA per definire il tipo di attività.</p>
+                </div>
+                <div class="help-section">
+                    <h3>Partenza</h3>
+                    <p>Inserisci il punto di partenza del tuo percorso. Puoi cercare un luogo specifico e aggiungere una descrizione opzionale.</p>
+                </div>
+                <div class="help-section">
+                    <h3>Tappe</h3>
+                    <p>Aggiungi le tappe intermedie del tuo percorso. Puoi:</p>
+                    <ul>
+                        <li>Cliccare sul pulsante "+" per aggiungere una nuova tappa</li>
+                        <li>Inserire un nome per la tappa</li>
+                        <li>Cercare la posizione della tappa</li>
+                        <li>Aggiungere una descrizione opzionale</li>
+                        <li>Rimuovere una tappa cliccando sulla "×"</li>
+                    </ul>
+                </div>
+                <div class="help-section">
+                    <h3>Arrivo</h3>
+                    <p>Definisci il punto di arrivo del tuo percorso. Come per la partenza, puoi cercare un luogo specifico e aggiungere una descrizione opzionale.</p>
+                </div>
+                <div class="help-section">
+                    <h3>Salvataggio</h3>
+                    <p>I tuoi progressi vengono salvati automaticamente. Puoi tornare in qualsiasi momento per completare o modificare il percorso.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="crea.js"></script>
+    <script src="../Assets/loading.js"></script>
+</body>
+</html>

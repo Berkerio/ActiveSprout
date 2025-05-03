@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Sprout - Manuale d'Uso</title>
+    <link rel="stylesheet" href="manuale.css">
+    <link rel="stylesheet" href="../Assets/loading.css" />
+    <link rel="stylesheet" href="../Assets/cursor.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div id="lottie-loading" class="loading-logo"></div>
+        <div class="loading-text">Caricamento in corso...</div>
+    </div>
+
+    <div class="container">
+        <header>
+            <a href="../index.html" class="logo">
+                <img src="../Assets/Manuale duso/Logohorizontal.png" alt="Active Sprout Logo" style="width: 400px; height: auto;">
+            </a>
+            <div class="header-buttons">
+                
+                <a href="../Login/login.html" class="btn btn-login">Login</a>
+            </div>
+        </header>
+
+        <h1 class="manual-title">Manuale d'Uso</h1>
+        <p class="manual-intro">
+            Questo manuale ti guiderà attraverso tutte le funzionalità di Active Sprout, 
+            aiutandoti a sfruttare al massimo la piattaforma per raggiungere i tuoi obiettivi fitness.
+        </p>
+
+        <div class="manual-content">
+            <div class="screen-navigation">
+                <button class="nav-button prev-button" disabled>&lt;</button>
+                <div class="screen-counter">Pagina <span id="current-page">1</span> di 6</div>
+                <button class="nav-button next-button">&gt;</button>
+            </div>
+
+            <!-- Pagina 1: Login -->
+            <div class="screen-display screen active" data-screen="1">
+                <div class="screen-image">
+                    <img src="../Assets/Login.png" alt="Schermata Login">
+                </div>
+                <div class="screen-description">
+                    <h2 class="screen-title">Schermata di Login</h2>
+                    <div class="screen-info">
+                        <p>La schermata di login permette agli utenti già registrati di accedere all'applicazione Active Sprout inserendo le proprie credenziali (username e password). Se non hai ancora un account, puoi registrarti tramite il link apposito.</p>
+                        <p>In alto è presente un messaggio motivazionale che invita a registrarsi per iniziare il proprio percorso fitness. Al centro della schermata si trova il logo di Active Sprout, che rafforza l'identità visiva dell'applicazione.</p>
+                    </div>
+                    <div class="screen-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Accesso rapido tramite inserimento di username e password</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Link diretto per la registrazione di nuovi utenti</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Design semplice, intuitivo e accattivante</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Pulsante per chiudere la schermata di login</span>
+                        </div>
+                    </div>
+                    <div class="screen-tips">
+                        <h3 class="tips-title">Come utilizzarla</h3>
+                        <ul>
+                            <li>Inserisci il tuo nome utente nel campo "Username".</li>
+                            <li>Digita la password nel campo "Password".</li>
+                            <li>Premi il pulsante "INIZIA" per accedere all'applicazione.</li>
+                            <li>Se non hai un account, clicca su "registrati" per crearne uno nuovo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagina 2: Inserimento dati fisici -->
+            <div class="screen-display screen" data-screen="2">
+                <div class="screen-image">
+                    <img src="../Assets/datifisici.png" alt="Dati Fisici">
+                </div>
+                <div class="screen-description">
+                    <h2 class="screen-title">Dati Fisici</h2>
+                    <div class="screen-info">
+                        <p>Questa schermata ti permette di inserire i tuoi dati fisici fondamentali: altezza, peso ed età. Queste informazioni sono essenziali per personalizzare il tuo percorso fitness e ricevere suggerimenti su misura.</p>
+                    </div>
+                    <div class="screen-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Campi dedicati per altezza, peso ed età</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Interfaccia semplice e chiara</span>
+                        </div>
+                    </div>
+                    <div class="screen-tips">
+                        <h3 class="tips-title">Come utilizzarla</h3>
+                        <ul>
+                            <li>Inserisci la tua altezza nel campo apposito.</li>
+                            <li>Inserisci il tuo peso.</li>
+                            <li>Indica la tua età.</li>
+                            <li>Premi "INVIA" per salvare i dati e proseguire.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagina 3: Benvenuto e home utente -->
+            <div class="screen-display screen" data-screen="3">
+                <div class="screen-image">
+                    <img src="../Assets/home.png" alt="Benvenuto">
+                </div>
+                <div class="screen-description">
+                    <h2 class="screen-title">Benvenuto/a</h2>
+                    <div class="screen-info">
+                        <p>Dopo aver effettuato l'accesso e inserito i tuoi dati, verrai accolto da una schermata di benvenuto. Qui puoi esplorare il tuo percorso verso il fitness, scoprire le funzionalità principali e iniziare subito a creare il tuo percorso personalizzato.</p>
+                    </div>
+                    <div class="screen-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Messaggio di benvenuto personalizzato</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Pulsante per iniziare subito a creare il tuo percorso</span>
+                        </div>
+                    </div>
+                    <div class="screen-tips">
+                        <h3 class="tips-title">Come utilizzarla</h3>
+                        <ul>
+                            <li>Leggi il messaggio di benvenuto e premi "CREA IL TUO PERCORSO" per iniziare.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagina 4: Scelta immagine profilo e riepilogo dati -->
+            <div class="screen-display screen" data-screen="4">
+                <div class="screen-image">
+                    <img src="../Assets/profilo.png" alt="Immagine Profilo e Dati">
+                </div>
+                <div class="screen-description">
+                    <h2 class="screen-title">Scegli un'immagine profilo</h2>
+                    <div class="screen-info">
+                        <p>In questa schermata puoi scegliere la tua immagine profilo e visualizzare un riepilogo dei tuoi dati fisici inseriti. Questo ti permette di personalizzare ulteriormente la tua esperienza su Active Sprout.</p>
+                    </div>
+                    <div class="screen-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Selezione dell'immagine profilo</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Visualizzazione e conferma dei dati fisici</span>
+                        </div>
+                    </div>
+                    <div class="screen-tips">
+                        <h3 class="tips-title">Come utilizzarla</h3>
+                        <ul>
+                            <li>Clicca su "SCEGLI IMMAGINE" per caricare una foto profilo.</li>
+                            <li>Controlla che i dati fisici siano corretti, poi premi "INVIA" per confermare.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagina 5: Creazione percorso -->
+            <div class="screen-display screen" data-screen="5">
+                <div class="screen-image">
+                    <img src="../Assets/crea.png" alt="Crea il tuo percorso">
+                </div>
+                <div class="screen-description">
+                    <h2 class="screen-title">Crea il tuo percorso</h2>
+                    <div class="screen-info">
+                        <p>Questa schermata ti permette di creare un percorso fitness personalizzato, scegliendo la modalità, il nome del percorso, la partenza, le tappe intermedie e l'arrivo. Puoi aggiungere descrizioni e dettagli utili per ogni tappa.</p>
+                    </div>
+                    <div class="screen-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Inserimento dettagliato di tutte le tappe del percorso</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Personalizzazione della modalità e delle descrizioni</span>
+                        </div>
+                    </div>
+                    <div class="screen-tips">
+                        <h3 class="tips-title">Come utilizzarla</h3>
+                        <ul>
+                            <li>Compila tutti i campi richiesti per il percorso e le tappe.</li>
+                            <li>Premi "INVIO" per salvare e iniziare il percorso.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagina 6: Allenamento in corso e mappa -->
+            <div class="screen-display screen" data-screen="6">
+                <div class="screen-image">
+                    <img src="../Assets/mappa.png" alt="Allenamento in corso">
+                </div>
+                <div class="screen-description">
+                    <h2 class="screen-title">Allenamento in corso</h2>
+                    <div class="screen-info">
+                        <p>Durante l'allenamento, la schermata mostra la mappa del percorso, le tappe, le informazioni in tempo reale su distanza, tempo, passi e calorie. Puoi mettere in pausa, uscire o vedere la prossima tappa prevista.</p>
+                    </div>
+                    <div class="screen-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Mappa interattiva con percorso e tappe</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Statistiche in tempo reale (distanza, tempo, passi, calorie)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">►</span>
+                            <span>Pulsanti per mettere in pausa o uscire dall'allenamento</span>
+                        </div>
+                    </div>
+                    <div class="screen-tips">
+                        <h3 class="tips-title">Come utilizzarla</h3>
+                        <ul>
+                            <li>Segui il percorso sulla mappa e monitora i tuoi progressi.</li>
+                            <li>Utilizza i pulsanti "PAUSA" o "ESCI" se necessario.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <div class="page-dot active" data-page="1"></div>
+                <div class="page-dot" data-page="2"></div>
+                <div class="page-dot" data-page="3"></div>
+                <div class="page-dot" data-page="4"></div>
+                <div class="page-dot" data-page="5"></div>
+                <div class="page-dot" data-page="6"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Active Sprout. Tutti i diritti riservati.</p>
+        </div>
+    </div>
+    <script src="manuale.js"></script>
+    <script src="../Assets/loading.js"></script>
+</body>
+</html>

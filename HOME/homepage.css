@@ -1,0 +1,462 @@
+:root {
+  --page-padding: max(0vw, 20px);
+  --cloud-width-1: min(144%, 2080px);
+  --cloud-width-2: min(170%, 850px);
+  --button-width: 361.5px;
+  --button-height: 91.5px;
+  --primary-gradient: linear-gradient(-45deg, #a8e6c9, #fcd9ff, #b7e5d9, #f5c5ff);
+  --button-active-gradient: linear-gradient(135deg, #45a2bc 0%, #7666c1 100%);
+  --button-create-gradient: linear-gradient(135deg, #bf9cff 0%, #7666c1 100%);
+  --welcome-gradient: linear-gradient(135deg, #5390b1 0%, #b700e3 100%);
+  --points-gradient: linear-gradient(135deg, #1bbc63 0%, #3f9218 100%);
+  --description-gradient: linear-gradient(135deg, #7bafd0 0%, #d466f3 100%);
+  --help-back-gradient: linear-gradient(135deg, #45a2bc 0%, #7666c1 80%);
+  --shadow-default: 5px 5px 6px rgba(0, 0, 0, 0.37);
+  --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --animation-slow: 0.3s ease;
+  --animation-medium: 0.25s ease;
+  --animation-fast: 0.15s ease;
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: fixed;
+  zoom: 86%;
+  cursor: url("/Assets/Cursor.png"), auto;
+}
+
+body {
+  background: var(--primary-gradient);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  font-family: "Integral CF", sans-serif;
+}
+
+/* Animations */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatingCloud {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-1.5%) scale(1.01); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes buttonShine {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+@keyframes pulseEffect {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Main Container */
+.main-version {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--page-padding);
+}
+
+/* Background and Clouds */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.background-image {
+  width: var(--cloud-width-1);
+  height: auto;
+  object-fit: contain;
+  animation: floatingCloud 20s ease-in-out infinite;
+  opacity: 0.6;
+  transform-origin: center;
+  will-change: transform;
+  margin-top: -10vh;
+}
+
+.background-image-2 {
+  width: 500px;
+  height: auto;
+  object-fit: contain;
+  animation: floatingCloud 25s ease-in-out infinite reverse;
+  animation-delay: -5s;
+  opacity: 1;
+  transform-origin: center;
+  will-change: transform;
+  margin-top: -30vh;
+}
+
+/* Header Styles */
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  padding: var(--page-padding);
+  z-index: 2;
+}
+
+.profile-section {
+  position: absolute;
+  top: var(--page-padding);
+  left: var(--page-padding);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 3;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform var(--animation-slow);
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.points-text {
+  font-size: 24px;
+  background: var(--points-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+}
+
+.username-text {
+  color: #4a4a4a;
+  font-size: 32px;
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+}
+
+.welcome-section {
+  width: 80%;
+  max-width: 800px;
+  margin: 120px auto 0;
+  text-align: center;
+  z-index: 2;
+}
+
+.welcome-title {
+  font-size: clamp(36px, 5vw, 48px);
+  background: var(--welcome-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.welcome-description {
+  font-size: clamp(18px, 2.5vw, 28px);
+  background: var(--description-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.4;
+}
+
+/* Main Content and Buttons */
+.main-content {
+  position: fixed;
+  bottom: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+  width: 90%;
+  max-width: 1200px;
+  z-index: 2;
+}
+
+/* Button Sections */
+.create-path-section {
+  position: relative;
+  width: var(--button-width);
+  height: var(--button-height);
+}
+
+/* Button styles */
+.create-path-btn {
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 11px;
+  background: var(--button-create-gradient);
+  color: white;
+  font-family: "Integral CF", sans-serif;
+  font-size: 18px;
+  transition: transform var(--animation-slow), box-shadow var(--animation-slow);
+  z-index: 2;
+  padding: 10px;
+  line-height: 1.2;
+  box-shadow: var(--shadow-default);
+  overflow: hidden;
+}
+
+/* Button shine effect */
+.create-path-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: var(--animation-medium);
+}
+
+/* Hover Effects for buttons */
+.create-path-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  cursor: url("../Assets/CursorHover.png"), auto;
+}
+
+.create-path-btn:hover::before {
+  animation: buttonShine 1.2s ease;
+}
+
+/* Active States */
+.create-path-btn:active {
+  transform: scale(0.98);
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.37);
+  transition: transform var(--animation-fast), box-shadow var(--animation-fast);
+}
+
+/* Back button and Help button */
+.utility-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+  z-index: 10;
+}
+
+.back-button,
+.help-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--help-back-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: var(--shadow-default);
+  transition: transform var(--animation-slow), box-shadow var(--animation-slow);
+  border: none;
+}
+
+.back-button:hover,
+.help-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  animation: pulseEffect 2s infinite ease-in-out;
+  cursor: url("../Assets/CursorHover.png"), auto;
+}
+
+.back-button:active,
+.help-button:active {
+  transform: scale(0.95);
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.37);
+  animation: none;
+}
+
+/* User manual modal */
+.manual-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--animation-slow), visibility var(--animation-slow);
+}
+
+.manual-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.manual-content {
+  width: 80%;
+  max-width: 800px;
+  max-height: 80vh;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  overflow-y: auto;
+  transform: translateY(30px);
+  transition: transform var(--animation-slow);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.manual-modal.active .manual-content {
+  transform: translateY(0);
+}
+
+.close-manual {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--button-active-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-default);
+  transition: transform var(--animation-medium);
+}
+
+.close-manual:hover {
+  transform: rotate(90deg);
+}
+
+.manual-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  background: var(--welcome-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Responsive Layout */
+@supports (height: 100dvh) {
+  html, body {
+    height: 100dvh;
+  }
+
+  .main-version {
+    height: 100dvh;
+  }
+}
+
+@media (max-height: 700px) {
+  .main-content {
+    bottom: 10vh;
+  }
+
+  .welcome-section {
+    margin-top: 80px;
+  }
+  
+  .utility-buttons {
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    gap: 20px;
+    bottom: 20vh;
+  }
+  
+  .create-path-section {
+    width: min(var(--button-width), 90vw);
+  }
+  
+  .welcome-section {
+    width: 90%;
+    margin-top: 100px;
+  }
+}
+
+/* High Contrast Mode */
+@media (forced-colors: active) {
+  .create-path-btn,
+  .back-button,
+  .help-button {
+    border: 2px solid ButtonText;
+  }
+
+  button:focus-visible {
+    outline: 2px solid ButtonText;
+    outline-offset: 2px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .background-image,
+  .background-image-2 {
+    animation: none;
+  }
+
+  * {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}
+
+/* Image Rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
